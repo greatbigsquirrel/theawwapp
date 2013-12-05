@@ -132,11 +132,15 @@ function applySizing(){
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
 	var maxCatHeight= window.innerHeight-55;
+	var byeButton= window.innerHeight-20;
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
 		catWidth=Math.round(catHeight*catRatio);
 	}else{
 		imageElement.style.paddingTop=Math.round((maxCatHeight-catHeight)*0.5)+"px";
+	}
+	if (settings.turnDemOff=="true"){
+		catHeight=byeButton;
 	}
 	imageElement.style.width=catWidth+"px";	
 	imageElement.style.height=catHeight+"px";
