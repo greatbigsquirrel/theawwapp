@@ -2,6 +2,7 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
+var buttonMagic=document.getElementById("cutestuff");
 function didLoad(){
 	var imageElement=document.getElementById("cat")
 	document.getElementById("start").addEventListener("click", startMadness);
@@ -86,7 +87,6 @@ function startLoad(){
 	imageElement.style.visibility="hidden";
 }
 function needMoreButton(){
-	var buttonMagic=document.getElementById("cutestuff");
 	buttonMagic.style.display="block";
 	document.getElementById("welcome").style.display="none";
 	if (settings.turnDemOff=="true"){
@@ -98,7 +98,7 @@ function startMadness(){
 	startLoad();
 }
 function stopMadness(){
-	document.getElementById("cutestuff").style.display="none";
+	buttonMagic.style.display="none";
 	document.getElementById("welcome").style.display="block";
 }
 function randomImage(ev,freshNip){
