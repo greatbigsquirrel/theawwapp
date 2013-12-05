@@ -81,13 +81,17 @@ function startLoad(){
 		}
 	}
 	xhr.open('GET', 'https://api.imgur.com/3/gallery/r/'+settings.subreddit+'/time/day/'+pgNum, true);
-	imageElement.style.visibility="hidden";
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
+	imageElement.style.visibility="hidden";
 }
 function needMoreButton(){
-	document.getElementById("cutestuff").style.display="block";
+	var buttonMagic=document.getElementById("cutestuff");
+	buttonMagic.style.display="block";
 	document.getElementById("welcome").style.display="none";
+	if (settings.turnDemOff=="true"){
+		buttonMagic.style.display="none";
+	}
 }
 function startMadness(){
 	needMoreButton();
@@ -112,7 +116,6 @@ function randomImage(ev,freshNip){
 }
 function showImage(imgObj){
 	var imageElement=document.getElementById("cat");
-	var buttonMagic=document.getElementById("cutestuff");
 	if (settings.sfw=="true" && imgObj.nsfw==true){
 		imageElement.src="over18.png";
 		applySizing();
@@ -121,9 +124,6 @@ function showImage(imgObj){
 		imageElement.style.visibility="hidden";
 		imageElement.src=imgObj.link;
 		imageElement.title=imgObj.title;
-	}
-	if (settings.turnDemOff=="true"){
-		buttonMagic.style.visibility="hidden";
 	}
 }
 function applySizing(){
