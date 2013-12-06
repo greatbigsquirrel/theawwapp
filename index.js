@@ -2,7 +2,9 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
+xxxx
 var buttonMagic=document.getElementById("cutestuff");
+console.log("button magic value is: " + buttonMagic)
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
 	var imageElement=document.getElementById("cat")
