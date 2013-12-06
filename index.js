@@ -99,7 +99,7 @@ function startMadness(){
 	startLoad();
 }
 function stopMadness(){
-	document.getElementById("cutestuff").style.display="none";
+	buttonMagic.style.display="none";
 	document.getElementById("welcome").style.display="block";
 }
 function randomImage(ev,freshNip){
