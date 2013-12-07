@@ -139,6 +139,7 @@ function applySizing(){
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
 		catWidth=Math.round(catHeight*catRatio);
+		imageElement.style.paddingTop="0px";
 	}else{
 		imageElement.style.paddingTop=Math.round((maxCatHeight-catHeight)*0.5)+"px";
 	}
