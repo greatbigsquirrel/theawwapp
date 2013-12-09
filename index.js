@@ -32,18 +32,6 @@ function didLoad(){
 	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
 		history.back();
 	});
-	window.onpopstate = function(event) {
-		if (event.state && event.state.link){
-			cats.push(event.state);
-			catNumber=cats.length-1;
-			showImage(cats[catNumber]);
-			if (cats[catNumber].firstItem){
-				stopMadness();
-			}else{
-				needMoreButton();
-			}
-		}
-	};
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event) {
 		history.back();
 	});
