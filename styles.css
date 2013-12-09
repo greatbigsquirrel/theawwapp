@@ -1,15 +1,14 @@
 body{
 	text-align:center;
 	background-color:#2B2B2B;
-	font-family:Verdana, sans-serif;
 	margin:0px;
 	color:#FE3838;
 	font-size:20pt;
-	font-family:'Belleza', sans-serif;
+	font-family:'Belleza', Verdana, sans-serif;
 	letter-spacing:2px;
 }
 #option{
-	margin:250px;
+	margin-top:15%;
 }
 #subreddit{
 	height:30px;
@@ -22,6 +21,9 @@ body{
 	top: -45px;
 	text-align: center;
 	width: 100%;
+}
+.buttonHolder{
+	margin-top:7px;
 }
 #welcome{
 	position:relative;
@@ -85,5 +87,7 @@ input[type="button"]:active{
     box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
 }
 #cat{
-	margin-top:10px;
+	line-height:0px;
+	font-size:0px;
+	vertical-align:text-bottom;
 }

@@ -134,7 +134,7 @@ function applySizing(){
 	var catHeight=Math.round(catWidth/catRatio);
 	var maxCatHeight= window.innerHeight-55;
 	if (settings.turnDemOff=="true"&&!cats[catNumber].firstItem){
-		maxCatHeight= window.innerHeight-20;
+		maxCatHeight= window.innerHeight;
 	}
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
