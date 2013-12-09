@@ -15,23 +15,23 @@ function didLoad(){
 	});
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", applySizing);
-    Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
-        if (cats[catNumber].firstItem){
+	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
+		if (cats[catNumber].firstItem){
 			startMadness();
 		}else{
 		randomImage();
 		}
-    });
+	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event) {
-        if (cats[catNumber].firstItem){
+		if (cats[catNumber].firstItem){
 			startMadness();
 		}else{
 		randomImage();
 		}
-    });
+	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
-        history.back();
-    });
+		history.back();
+	});
 	window.onpopstate = function(event) {
 		if (event.state && event.state.link){
 			cats.push(event.state);
@@ -45,8 +45,8 @@ function didLoad(){
 		}
 	};
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event) {
-        history.back();
-    });
+		history.back();
+	});
 	window.onpopstate = function(event) {
 		if (event.state && event.state.link){
 			cats.push(event.state);
