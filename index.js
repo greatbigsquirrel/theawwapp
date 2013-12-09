@@ -3,6 +3,7 @@ var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
 var buttonMagic=null;
+var is_loading=false;
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
 	var imageElement=document.getElementById("cat")
@@ -14,19 +15,22 @@ function didLoad(){
 		window.location.href="options.html";
 	});
 	document.getElementById("nextpic").addEventListener("click", randomImage);
-	imageElement.addEventListener("load", applySizing);
+	imageElement.addEventListener("load", function(event) {
+		is_loading=false;
+		applySizing();
+	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
-		if (cats[catNumber].firstItem){
+		if(cats[catNumber].firstItem){
 			startMadness();
 		}else{
-		randomImage();
+			randomImage();
 		}
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event) {
-		if (cats[catNumber].firstItem){
+		if(cats[catNumber].firstItem){
 			startMadness();
 		}else{
-		randomImage();
+			randomImage();
 		}
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
@@ -36,11 +40,11 @@ function didLoad(){
 		history.back();
 	});
 	window.onpopstate = function(event) {
-		if (event.state && event.state.link){
+		if(event.state && event.state.link){
 			cats.push(event.state);
 			catNumber=cats.length-1;
 			showImage(cats[catNumber]);
-			if (cats[catNumber].firstItem){
+			if(cats[catNumber].firstItem){
 				stopMadness();
 			}else{
 				needMoreButton();
@@ -78,7 +82,7 @@ function startLoad(){
 function needMoreButton(){
 	buttonMagic.style.display="block";
 	document.getElementById("welcome").style.display="none";
-	if (settings.turnDemOff=="true"){
+	if(settings.turnDemOff=="true"){
 		buttonMagic.style.display="none";
 	}
 }
@@ -91,6 +95,7 @@ function stopMadness(){
 	document.getElementById("welcome").style.display="block";
 }
 function randomImage(ev,freshNip){
+	if(is_loading) return;
 	if(cats.length>0 && (typeof(freshNip)=="undefined" || !freshNip)){
 		cats.splice(catNumber,1);
 		if(cats.length<1){
@@ -105,11 +110,12 @@ function randomImage(ev,freshNip){
 }
 function showImage(imgObj){
 	var imageElement=document.getElementById("cat");
-	if (settings.sfw=="true" && imgObj.nsfw==true){
+	if(settings.sfw=="true" && imgObj.nsfw==true){
 		imageElement.src="over18.png";
 		applySizing();
 		imageElement.title="nsfw";
 	}else{
+		is_loading=true;
 		imageElement.style.visibility="hidden";
 		imageElement.src=imgObj.link;
 		imageElement.title=imgObj.title;
@@ -121,7 +127,7 @@ function applySizing(){
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
 	var maxCatHeight= window.innerHeight-55;
-	if (settings.turnDemOff=="true"&&!cats[catNumber].firstItem){
+	if(settings.turnDemOff=="true"&&!cats[catNumber].firstItem){
 		maxCatHeight= window.innerHeight;
 	}
 	if(catHeight>maxCatHeight){
