@@ -126,18 +126,27 @@ function applySizing(){
 	var catRatio=cats[catNumber].width/cats[catNumber].height;
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
-	var maxCatHeight= window.innerHeight-55;
-	if(settings.turnDemOff=="true"&&!cats[catNumber].firstItem){
-		maxCatHeight= window.innerHeight;
+	var buttonPadding=65;
+	var buttons_hidden=settings.turnDemOff=="true" && !cats[catNumber].firstItem;
+	if(buttons_hidden){
+		buttonPadding = 0;
 	}
+	var maxCatHeight= window.innerHeight-buttonPadding;
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
 		catWidth=Math.round(catHeight*catRatio);
 		imageElement.style.paddingTop="0px";
+		if(!buttons_hidden){
+			imageElement.style.paddingTop="10px";
+		}
 	}else{
-		imageElement.style.paddingTop=Math.round((maxCatHeight-catHeight)*0.5)+"px";
+		var picTopPad=Math.round((maxCatHeight-catHeight)*0.5);
+		if(picTopPad<10 && !buttons_hidden){
+			picTopPad=10;
+		}
+		imageElement.style.paddingTop=picTopPad+"px";
 	}
-	imageElement.style.width=catWidth+"px";	
+	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
 	imageElement.style.visibility="visible";
 }

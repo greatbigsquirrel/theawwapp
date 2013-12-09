@@ -6,6 +6,7 @@ body{
 	font-size:20pt;
 	font-family:'Belleza', Verdana, sans-serif;
 	letter-spacing:2px;
+	overflow:hidden;
 }
 #option{
 	margin-top:15%;
