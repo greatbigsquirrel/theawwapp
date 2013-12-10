@@ -2,11 +2,11 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null;
+var buttonMagic=null, imageElement=null;
 var is_loading=false;
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
-	var imageElement=document.getElementById("cat")
+	imageElement=document.getElementById("cat")
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("options").addEventListener("click", function(){
 		window.location.href="options.html";
@@ -17,6 +17,7 @@ function didLoad(){
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
+		document.getElementById("loadNAO").style.backgroundImage="none";
 		applySizing();
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
@@ -56,7 +57,6 @@ function didLoad(){
 }
 function startLoad(){
 	var xhr = new XMLHttpRequest();
-	var imageElement=document.getElementById("cat");
 	 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
@@ -70,7 +70,7 @@ function startLoad(){
 					window.location.href="options.html";
 				}
 			}else{
-				alert('Error: '+xhr.status); 
+				alert('Error: xhr error'+xhr.status); 
 			}
 		}
 	}
@@ -109,20 +109,19 @@ function randomImage(ev,freshNip){
 	history.pushState(cats[catNumber], "", "index.html?img="+cats[catNumber].link);
 }
 function showImage(imgObj){
-	var imageElement=document.getElementById("cat");
 	if(settings.sfw=="true" && imgObj.nsfw==true){
 		imageElement.src="over18.png";
 		applySizing();
 		imageElement.title="nsfw";
 	}else{
 		is_loading=true;
+		document.getElementById("loadNAO").style.backgroundImage="url(loading.gif)";
 		imageElement.style.visibility="hidden";
 		imageElement.src=imgObj.link;
 		imageElement.title=imgObj.title;
 	}
 }
 function applySizing(){
-	var imageElement=document.getElementById("cat");
 	var catRatio=cats[catNumber].width/cats[catNumber].height;
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
