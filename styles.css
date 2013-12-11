@@ -8,6 +8,14 @@ body{
 	letter-spacing:2px;
 	overflow:hidden;
 }
+#shareOptions{
+	position: absolute;
+	top:-50px;
+	left:0px;
+	width:100%;
+	transition:top 1s ease-out;
+	margin:5px;
+}
 #option{
 	margin-top:15%;
 }

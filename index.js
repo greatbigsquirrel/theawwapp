@@ -34,18 +34,14 @@ function didLoad(){
 			randomImage();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event) {
-		if(cats[catNumber].firstItem){
-			startMadness();
-		}else{
-			randomImage();
-		}
-	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
 		history.back();
 	});
+	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event) {
+		shareButtons();
+	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event) {
-		history.back();
+		hideShareButtons();
 	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
@@ -133,6 +129,7 @@ function showImage(imgObj){
 		loadingGif();
 		imageElement.src=imgObj.link;
 		imageElement.title=imgObj.title;
+		shareButtonMagic(imgObj);
 	}
 }
 function applySizing(){
