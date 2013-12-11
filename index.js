@@ -70,7 +70,11 @@ function startLoad(){
 					window.location.href="options.html";
 				}
 			}else{
-				alert('Error: xhr error'+xhr.status); 
+				if (confirm("Sorry! Loading issue, try again?")){
+					startLoad();
+				}else{
+					window.location.href="index.html";
+				}
 			}
 		}
 	}
