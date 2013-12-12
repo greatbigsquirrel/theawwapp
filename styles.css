@@ -92,3 +92,15 @@ input[type="button"]:active{
 	font-size:0px;
 	vertical-align:text-bottom;
 }
+#tryTryAgain{
+	top:15%;
+	position: absolute;
+	background-color:#2B2B2B;
+	width:60%;
+	margin:auto;
+	border: 3px solid red;
+	border-radius:3px;
+	padding:15px;
+	left:20%;
+	display:none;
+}

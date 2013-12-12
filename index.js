@@ -17,8 +17,15 @@ function didLoad(){
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
-		document.getElementById("loadNAO").style.backgroundImage="none";
+		stopGif();
+		imageElement.style.visibility="visible";
 		applySizing();
+	});
+	document.getElementById("restart").addEventListener("click", function(){
+		window.location.href="index.html";
+	});
+	document.getElementById("tryAgain").addEventListener("click", function(){
+		startLoad();
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
@@ -70,18 +77,22 @@ function startLoad(){
 					window.location.href="options.html";
 				}
 			}else{
-				if (confirm("Sorry! Loading issue, try again?")){
-					startLoad();
-				}else{
-					window.location.href="index.html";
-				}
+				document.getElementById("tryTryAgain").style.display="block";
+				stopGif();
 			}
 		}
 	}
 	xhr.open('GET', 'https://api.imgur.com/3/gallery/r/'+settings.subreddit+'/time/day/'+pgNum, true);
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
+	loadingGif();
+}
+function loadingGif(){
+	document.getElementById("loadNAO").style.backgroundImage="url(loading.gif)";
 	imageElement.style.visibility="hidden";
+}
+function stopGif(){
+	document.getElementById("loadNAO").style.backgroundImage="none";
 }
 function needMoreButton(){
 	buttonMagic.style.display="block";
@@ -119,8 +130,7 @@ function showImage(imgObj){
 		imageElement.title="nsfw";
 	}else{
 		is_loading=true;
-		document.getElementById("loadNAO").style.backgroundImage="url(loading.gif)";
-		imageElement.style.visibility="hidden";
+		loadingGif();
 		imageElement.src=imgObj.link;
 		imageElement.title=imgObj.title;
 	}
@@ -151,7 +161,6 @@ function applySizing(){
 	}
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
-	imageElement.style.visibility="visible";
 }
 
 document.addEventListener("DOMContentLoaded", didLoad);
