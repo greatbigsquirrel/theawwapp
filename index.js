@@ -2,11 +2,12 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, imageElement=null;
+var buttonMagic=null, shareMagic=null, imageElement=null;
 var is_loading=false;
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
 	imageElement=document.getElementById("cat")
+	shareMagic=document.getElementById("shareOptions");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("options").addEventListener("click", function(){
 		window.location.href="options.html";
@@ -27,6 +28,12 @@ function didLoad(){
 	document.getElementById("tryAgain").addEventListener("click", function(){
 		startLoad();
 	});
+	if(settings.turnDemOff=="true"){
+		buttonMagic.style.display="none";
+	}
+	if(settings.noShare=="true"){
+		shareMagic.style.display="none";
+	}
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -92,10 +99,8 @@ function stopGif(){
 }
 function needMoreButton(){
 	buttonMagic.style.display="block";
+	shareMagic.style.display="block";
 	document.getElementById("welcome").style.display="none";
-	if(settings.turnDemOff=="true"){
-		buttonMagic.style.display="none";
-	}
 }
 function startMadness(){
 	needMoreButton();
@@ -103,6 +108,7 @@ function startMadness(){
 }
 function stopMadness(){
 	buttonMagic.style.display="none";
+	shareMagic.style.display="none";
 	document.getElementById("welcome").style.display="block";
 }
 function randomImage(ev,freshNip){
@@ -120,10 +126,12 @@ function randomImage(ev,freshNip){
 	history.pushState(cats[catNumber], "", "index.html?img="+cats[catNumber].link);
 }
 function showImage(imgObj){
+	hideShareButtons();
 	if(settings.sfw=="true" && imgObj.nsfw==true){
 		imageElement.src="over18.png";
 		applySizing();
 		imageElement.title="nsfw";
+		document.getElementById("shareOptions").style.display="none";
 	}else{
 		is_loading=true;
 		loadingGif();

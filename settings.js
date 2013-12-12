@@ -4,6 +4,7 @@ settings.subreddit= "aww";
 //add options here, define input elements in options.html
 settings.sfw="true";
 settings.turnDemOff="false";
+settings.noShare="false";
 
 function settingsLoad(){
 	for(var setting in settings){
