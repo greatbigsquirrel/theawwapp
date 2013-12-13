@@ -1,5 +1,10 @@
-var shareLocations=["googleplus","stumbleupon","pinterest","twitter","facebook","adfty","allvoices","amazon_wishlist","arto","baidu","bebo","blinklist","blip","blogmarks","blogger","brainify","buddymarks","buffer","bus_exchange","care2","chiq","citeulike","connotea","corank","corkboard","current","dealsplus","delicious", "linkedin","digg","diigo","dotnetshoutout","dzone","edmodo","evernote","fark","fashiolista","folkd","formspring","fresqui","friendfeed","funp","fwisp","google","google_bmarks","google_reader","google_translate","hatena","hyves","identi","instapaper","jumptags","kaboodle","linkagogo","livejournal","mail_ru","meneame","messenger","mister_wong","mixx","moshare","myspace","n4g","netlog","netvouz","newsvine","nujij","odnoklassniki","oknotizie","orkut","raise_your_voice","reddit","segnalo","sina","slashdot","sonico","speedtile","startaid","startlap","stumpedia","technorati","typepad","tumblr","viadeo","virb","vkontakte","voxopolis","wordpress","xanga","xerpi","xing","yammer","yigg"];
-var shareBaseUrl = 'http://rest.sharethis.com/v1/share/share?api_key=evnezzg6nkq7927uydjxts53';//&destination=sharethis&url=www.sharethis.com';
+var shareLocations=[
+	{name:"Stumbleupon", icon:"stumbleupon_32.png", url:"http://www.stumbleupon.com/submit?url=*URL*"},
+	{name:"Pinterest", icon:"pinterest_32.png", url:"http://pinterest.com/pin/create/button/?url=*URL*&media=*IMG*&description=*TITLE*"},
+	{name:"Googleplus", icon:"googleplus_32.png", url:"https://plus.google.com/share?url=*URL*"},
+	{name:"Twitter", icon:"twitter_32.png", url:"http://twitter.com/home?status=*TITLE*%20-%20*URL*"},
+	{name:"Facebook", icon:"facebook_32.png", url:"http://www.facebook.com/sharer.php?u=*URL*&t=*TITLE*"}
+];
 function shareButtons(){
 	document.getElementById("shareOptions").style.display="visible";
 	document.getElementById("shareOptions").style.top="0px";
@@ -16,10 +21,9 @@ function shareButtonMagic(imgObj){
 		if (i<5){
 			var imageShare=document.createElement("img");
 			var linkShare=document.createElement("a");
-			//var textShare=document.createTextNode();
-			imageShare.setAttribute("src","http://w.sharethis.com/images/"+shareLocations[i]+"_32.png");
-			imageShare.setAttribute("title", shareLocations[i]);
-			linkShare.setAttribute("href", shareBaseUrl+"&destination="+shareLocations[i]+"&url="+encodeURIComponent(imgObj.link)+"&title="+imgObj.title);
+			imageShare.setAttribute("src","icons/social_icons/"+shareLocations[i].icon);
+			imageShare.setAttribute("title", shareLocations[i].name);
+			linkShare.setAttribute("href", shareLocations[i].url.replace("*URL*",escape(imgObj.link.match(/(.*)\.[^.]+$/)[1])).replace("*TITLE*", escape(imgObj.title)).replace("*IMG*", escape(imgObj.link)));
 			linkShare.setAttribute("target", "_blank");
 			linkShare.appendChild(imageShare);
 			document.getElementById("shareOptions").appendChild(linkShare);
