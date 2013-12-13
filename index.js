@@ -9,6 +9,7 @@ function didLoad(){
 	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
 	document.getElementById("start").addEventListener("click", startMadness);
+	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
 	document.getElementById("options").addEventListener("click", function(){
 		window.location.href="options.html";
 	});
@@ -28,11 +29,9 @@ function didLoad(){
 	document.getElementById("tryAgain").addEventListener("click", function(){
 		startLoad();
 	});
-	if(settings.turnDemOff=="true"){
-		buttonMagic.style.display="none";
-	}
 	if(settings.noShare=="true"){
 		shareMagic.style.display="none";
+		document.getElementById("toggleButton").style.display="none";
 	}
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
@@ -44,12 +43,8 @@ function didLoad(){
 	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
 		history.back();
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event) {
-		shareButtons();
-	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event) {
-		hideShareButtons();
-	});
+	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", shareButtons);
+	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", hideShareButtons);
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
 			cats.push(event.state);
@@ -99,6 +94,9 @@ function stopGif(){
 }
 function needMoreButton(){
 	buttonMagic.style.display="block";
+	if(settings.turnDemOff=="true"){
+		buttonMagic.style.display="none";
+	}
 	shareMagic.style.display="block";
 	document.getElementById("welcome").style.display="none";
 }

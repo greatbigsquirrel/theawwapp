@@ -12,6 +12,13 @@ function shareButtons(){
 function hideShareButtons(){
 	document.getElementById("shareOptions").style.top="-50px";
 }
+function toggleShareButtons(){
+	if (document.getElementById("shareOptions").style.top=="0px"){
+		hideShareButtons();
+	}else{
+		shareButtons();
+	}
+}
 function shareButtonMagic(imgObj){
 	document.getElementById("shareOptions").innerHTML="";
 	if (imgObj.firstItem || settings.noShare=="true"){
