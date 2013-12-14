@@ -5,6 +5,7 @@ var shareLocations=[
 	{name:"Twitter", icon:"twitter_32.png", url:"http://twitter.com/home?status=*TITLE*%20-%20*URL*"},
 	{name:"Facebook", icon:"facebook_32.png", url:"http://www.facebook.com/sharer.php?u=*URL*&t=*TITLE*"}
 ];
+//for more share buttons: http://w.sharethis.com/images/#nameofsite(ex.pinterest)_32.png
 function shareButtons(){
 	document.getElementById("shareOptions").style.display="visible";
 	document.getElementById("shareOptions").style.top="0px";
