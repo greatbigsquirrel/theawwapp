@@ -13,6 +13,11 @@ function didLoad(){
 	document.getElementById("options").addEventListener("click", function(){
 		window.location.href="options.html";
 	});
+	document.getElementById("Halp").addEventListener("click", function(){
+		cats[catNumber].link="swipemadeeasy.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="none";
+	});
 	document.getElementById("firstOptions").addEventListener("click", function(){
 		window.location.href="options.html";
 	});
@@ -108,6 +113,7 @@ function stopMadness(){
 	buttonMagic.style.display="none";
 	shareMagic.style.display="none";
 	document.getElementById("welcome").style.display="block";
+	document.getElementById("catbug").style.display="block";
 }
 function randomImage(ev,freshNip){
 	if(is_loading) return;
