@@ -7,14 +7,14 @@ var shareLocations=[
 ];
 //for more share buttons: http://w.sharethis.com/images/#nameofsite(ex.pinterest)_32.png
 function shareButtons(){
-	document.getElementById("shareOptions").style.display="visible";
-	document.getElementById("shareOptions").style.top="0px";
+	document.getElementById("Slider").style.display="visible";
+	document.getElementById("Slider").style.top="0px";
 }
 function hideShareButtons(){
-	document.getElementById("shareOptions").style.top="-50px";
+	document.getElementById("Slider").style.top="-50px";
 }
 function toggleShareButtons(){
-	if (document.getElementById("shareOptions").style.top=="0px"){
+	if (document.getElementById("Slider").style.top=="0px"){
 		hideShareButtons();
 	}else{
 		shareButtons();

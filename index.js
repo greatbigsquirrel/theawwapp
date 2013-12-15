@@ -110,7 +110,7 @@ function needMoreButton(){
 	if(settings.turnDemOff=="true"){
 		buttonMagic.style.display="none";
 	}
-	shareMagic.style.display="block";
+	shareMagic.style.display="inline-block";
 	document.getElementById("welcome").style.display="none";
 }
 function startMadness(){
@@ -142,7 +142,7 @@ function showImage(imgObj){
 		imageElement.src="over18.png";
 		applySizing();
 		imageElement.title="nsfw";
-		document.getElementById("shareOptions").style.display="none";
+		shareMagic.style.display="none";
 	}else{
 		is_loading=true;
 		loadingGif();
