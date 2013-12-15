@@ -8,13 +8,23 @@ body{
 	letter-spacing:2px;
 	overflow:hidden;
 }
-#shareOptions{
+#Slider{
 	position: absolute;
 	top:-50px;
 	left:0px;
 	width:100%;
 	transition:top 1s ease-out;
 	margin:5px;
+	vertical-align:top;
+}
+#shareOptions{
+	display:inline-block;
+	padding-top:4px;
+	vertical-align:top;
+}
+#optionHelp{
+	display:inline-block;
+	vertical-align:top;
 }
 #option{
 	margin-top:15%;
