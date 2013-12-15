@@ -1,7 +1,7 @@
 {
-    "name": "Subreddit Dose",
+    "name": "Subreddit Shred",
     "description": "Grab a random image from a subreddit imgur gallery",
-    "version": "2",
+    "version": "1.1",
 	"options_page": "options.html",
     "app": {
         "launch": {

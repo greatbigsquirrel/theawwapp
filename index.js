@@ -4,17 +4,17 @@ var catNumber=0;
 var pgNum=0;
 var buttonMagic=null, shareMagic=null, imageElement=null;
 var is_loading=false;
-document.addEventListener(‘tizenhwkey’, function(e) {
-var activePage = $.mobile.activePage().attr(‘id’); // read current page
+document.addEventListener("tizenhwkey", function(e) {
+var activePage = $.mobile.activePage().attr("id"); // read current page
 switch(e.keyName)
 {
-case ‘back’:
+case "back":
 tizen.application.getCurrentApplication().exit();
 break;
-case ‘menu’:
+case "menu":
 break;
 default:
-console.log(“Not supported.”);
+console.log("Not supported.");
 }
 });
 function didLoad(){
