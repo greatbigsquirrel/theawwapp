@@ -5,17 +5,20 @@ var pgNum=0;
 var buttonMagic=null, shareMagic=null, imageElement=null;
 var is_loading=false;
 document.addEventListener("tizenhwkey", function(e) {
-var activePage = $.mobile.activePage().attr("id"); // read current page
-switch(e.keyName)
-{
-case "back":
-tizen.application.getCurrentApplication().exit();
-break;
-case "menu":
-break;
-default:
-console.log("Not supported.");
-}
+	switch (e.keyName) {
+	case "back":
+		if (cats[catNumber].firstItem) {
+			tizen.application.getCurrentApplication().exit();
+		}else{
+			history.back();
+		}
+		break;
+	case "menu":
+		window.location.href = "options.html";
+		break;
+	default:
+		console.log("Not supported.");
+	}
 });
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");

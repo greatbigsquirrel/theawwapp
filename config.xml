@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj" version="1.0.0" viewmodes="maximized">
+    <access origin="https://imgur.com" subdomains="true"/>
+    <tizen:allow-navigation>true</tizen:allow-navigation>
+    <tizen:application id="IoLKCYuq2f.theawwapp" package="IoLKCYuq2f" required_version="2.2"/>
+    <author href="https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj" email="greatbigsquirrel@gmail.com">Suzan Pero</author>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icons/round-icon117.png"/>
+    <name>theawwapp</name>
+</widget>

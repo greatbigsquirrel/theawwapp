@@ -122,3 +122,8 @@ input[type="button"]:active{
 	left:20%;
 	display:none;
 }
+@media all and (max-width: 800px) {
+	body{
+		font-size:17px;
+	}
+}

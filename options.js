@@ -1,3 +1,15 @@
+document.addEventListener("tizenhwkey", function(e) {
+	switch (e.keyName) {
+	case "back":
+		goBack();
+		break;
+	case "menu":
+		goBack();
+		break;
+	default:
+		console.log("Not supported.");
+	}
+});
 function optionLoad(){
 	document.getElementById("go").addEventListener("click", goBack);
 	document.getElementById("save").addEventListener("click", saveOptions);
