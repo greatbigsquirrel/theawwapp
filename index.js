@@ -22,7 +22,7 @@ document.addEventListener("tizenhwkey", function(e) {
 });
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
-	imageElement=document.getElementById("cat")
+	imageElement=document.getElementById("cat");
 	shareMagic=document.getElementById("shareOptions");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
@@ -38,7 +38,7 @@ function didLoad(){
 		window.location.href="options.html";
 	});
 	document.getElementById("nextpic").addEventListener("click", randomImage);
-	imageElement.addEventListener("load", function(event) {
+	imageElement.addEventListener("load", function(event){
 		is_loading=false;
 		stopGif();
 		imageElement.style.visibility="visible";
