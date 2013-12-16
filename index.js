@@ -84,7 +84,7 @@ function startLoad(){
 				stopGif();
 			}
 		}
-	}
+	};
 	xhr.open('GET', 'https://api.imgur.com/3/gallery/r/'+settings.subreddit+'/time/day/'+pgNum, true);
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
