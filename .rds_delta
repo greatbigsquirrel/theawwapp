@@ -1,9 +1,0 @@
-#delete
-res/wgt/build.awk
-res/wgt/build.sh
-res/wgt/manifest.json
-#add
-#modify
-res/wgt/author-signature.xml
-res/wgt/signature1.xml
-res/wgt/styles.css
