@@ -8,12 +8,15 @@ import android.webkit.WebView;
 
 public class MainActivity extends Activity {
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WebView myWebView = (WebView) findViewById(R.id.webview);
         myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setDomStorageEnabled(true);
+        myWebView.getSettings().setDatabaseEnabled(true);
         myWebView.loadUrl("file:///android_asset/index.html");
 //        WebView.addJavascriptInterface (new WebAppInterface(this), "Load");
 //        WebSettings webSettings = myWebView.getSettings();
