@@ -35,7 +35,8 @@ body{
 	font-size:18px;
 }
 #catbug{
-	color:#D41849;
+	color:#AB3F3E;
+	text-shadow: 3px 2px 3px #2B2B2B;
 	position: absolute;
 	top: -45px;
 	text-align: center;
