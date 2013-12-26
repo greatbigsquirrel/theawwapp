@@ -239,7 +239,7 @@ function applySizing(){
 	imageElement.style.height=catHeight+"px";
 }
 
+document.addEventListener("DOMContentLoaded", settingsLoad);
 document.addEventListener("DOMContentLoaded", didLoad);
 document.addEventListener("DOMContentLoaded", optionLoad);
-document.addEventListener("DOMContentLoaded", settingsLoad);
 window.addEventListener("resize", applySizing);
