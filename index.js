@@ -115,7 +115,7 @@ function optionLoad(){
 	}
 }
 function goBack(){
-	optional.style.top="-100%";
+	optional.style.top="-250%";
 }
 function saveOptions(){
 	for(var setting in settings){
