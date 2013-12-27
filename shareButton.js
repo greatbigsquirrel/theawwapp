@@ -11,7 +11,7 @@ function shareButtons(){
 	document.getElementById("Slider").style.top="0px";
 }
 function hideShareButtons(){
-	document.getElementById("Slider").style.top="-50px";
+	document.getElementById("Slider").style.top="-70px";
 }
 function toggleShareButtons(){
 	if (document.getElementById("Slider").style.top=="0px"){
