@@ -36,17 +36,9 @@ function didLoad(){
 	optional=document.getElementById("option");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("options").addEventListener("click", function(){
-		toggleOption();
-	});
-	document.getElementById("Halp").addEventListener("click", function(){
-		cats[catNumber].link="swipemadeeasy.png";
-		showImage(cats[catNumber]);
-		document.getElementById("catbug").style.display="none";
-	});
-	document.getElementById("firstOptions").addEventListener("click", function(){
-		toggleOption();
-	});
+	document.getElementById("options").addEventListener("click", toggleOption);
+	document.getElementById("Halp").addEventListener("click", toggleHelp);
+	document.getElementById("firstOptions").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event){
 		is_loading=false;
@@ -121,6 +113,17 @@ function toggleOption(){
 		optional.style.bottom="30%";
 	}else{
 		optional.style.bottom="100%";
+	}
+}
+function toggleHelp(){
+	if (cats[catNumber].link!="swipemadeeasy.png"){
+		cats[catNumber].link="swipemadeeasy.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="none";
+	}else{
+		cats[catNumber].link="catbug.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="block";
 	}
 }
 //options stuff
