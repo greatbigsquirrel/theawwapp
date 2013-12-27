@@ -37,7 +37,7 @@ function didLoad(){
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
 	document.getElementById("options").addEventListener("click", function(){
-		optional.style.top="0%";
+		toggleOption();
 	});
 	document.getElementById("Halp").addEventListener("click", function(){
 		cats[catNumber].link="swipemadeeasy.png";
@@ -45,7 +45,7 @@ function didLoad(){
 		document.getElementById("catbug").style.display="none";
 	});
 	document.getElementById("firstOptions").addEventListener("click", function(){
-		optional.style.top="0%";
+		toggleOption();
 	});
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event){
@@ -115,6 +115,13 @@ function startLoad(){
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
 	loadingGif();
+}
+function toggleOption(){
+	if (optional.style.bottom!="30%"){
+		optional.style.bottom="30%";
+	}else{
+		optional.style.bottom="100%";
+	}
 }
 //options stuff
 function optionLoad(){
