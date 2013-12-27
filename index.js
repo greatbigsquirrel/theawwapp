@@ -2,7 +2,7 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, shareMagic=null, imageElement=null, optional=null;
+var buttonMagic=null, shareMagic=null, imageElement=null, optional=null, allAbout=null;
 var is_loading=false;
 //vars for settings
 var settings={};
@@ -18,19 +18,12 @@ function didLoad(){
 	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
 	optional=document.getElementById("option");
+	allAbout=document.getElementById("about");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("options").addEventListener("click", function(){
-		toggleOption();
-	});
-	document.getElementById("Halp").addEventListener("click", function(){
-		cats[catNumber].link="swipemadeeasy.png";
-		showImage(cats[catNumber]);
-		document.getElementById("catbug").style.display="none";
-	});
-	document.getElementById("firstOptions").addEventListener("click", function(){
-		toggleOption();
-	});
+	document.getElementById("options").addEventListener("click", toggleOption);
+	document.getElementById("Halp").addEventListener("click", toggleHelp);
+	document.getElementById("firstOptions").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
@@ -48,6 +41,9 @@ function didLoad(){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
 	}
+//this is for the about page!
+	document.getElementById("aboutMe").addEventListener("click", toggleAbout);
+	document.getElementById("closeAbout").addEventListener("click", toggleClose);
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -99,6 +95,31 @@ function startLoad(){
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
 	loadingGif();
+}
+function toggleAbout(){
+	if (allAbout.style.top!="15%"){
+		allAbout.style.top="15%";
+	}else{
+		allAbout.style.top="100%";
+	}
+}
+function toggleClose(){
+	if (allAbout.style.top!="15%"){
+		allAbout.style.top="15%";
+	}else{
+		allAbout.style.top="100%";
+	}
+}
+function toggleHelp(){
+	if (cats[catNumber].link!="swipemadeeasy.png"){
+		cats[catNumber].link="swipemadeeasy.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="none";
+	}else{
+		cats[catNumber].link="catbug.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="block";
+	}
 }
 function toggleOption(){
 	if (optional.style.bottom!="30%"){
