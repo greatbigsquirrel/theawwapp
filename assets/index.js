@@ -2,8 +2,17 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, shareMagic=null, imageElement=null;
+var buttonMagic=null, shareMagic=null, imageElement=null, optional=null;
 var is_loading=false;
+//vars for settings
+var settings={};
+//default values: we will attempt to load from local storage
+settings.subreddit= "aww";
+//add options here, define input elements in options
+settings.sfw="true";
+settings.turnDemOff="false";
+settings.noShare="false";
+//end settings set up
 document.addEventListener("tizenhwkey", function(e) {
 	switch (e.keyName) {
 	case "back":
@@ -24,10 +33,11 @@ function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
 	imageElement=document.getElementById("cat");
 	shareMagic=document.getElementById("shareOptions");
+	optional=document.getElementById("option");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
 	document.getElementById("options").addEventListener("click", function(){
-		window.location.href="options.html";
+		toggleOption();
 	});
 	document.getElementById("Halp").addEventListener("click", function(){
 		cats[catNumber].link="swipemadeeasy.png";
@@ -35,7 +45,7 @@ function didLoad(){
 		document.getElementById("catbug").style.display="none";
 	});
 	document.getElementById("firstOptions").addEventListener("click", function(){
-		window.location.href="options.html";
+		toggleOption();
 	});
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event){
@@ -93,7 +103,7 @@ function startLoad(){
 					randomImage({},true);
 				}else{
 					alert("Oh noes, you reached the end of reddit!");
-					window.location.href="options.html";
+					window.location.href="index.html";
 				}
 			}else{
 				document.getElementById("tryTryAgain").style.display="block";
@@ -106,6 +116,54 @@ function startLoad(){
 	xhr.send(null);
 	loadingGif();
 }
+function toggleOption(){
+	if (optional.style.bottom!="30%"){
+		optional.style.bottom="30%";
+	}else{
+		optional.style.bottom="100%";
+	}
+}
+//options stuff
+function optionLoad(){
+	document.getElementById("go").addEventListener("click", goBack);
+	document.getElementById("save").addEventListener("click", saveOptions);
+	
+	for(var setting in settings){
+		if (document.getElementById(setting)){
+			document.getElementById(setting).value=settings[setting];
+			if (settings[setting]=="true"){
+				document.getElementById(setting).checked=true;
+			}
+		}
+	}
+}
+function goBack(){
+	optional.style.top="-250%";
+}
+function saveOptions(){
+	for(var setting in settings){
+		if (document.getElementById(setting)){
+			if (document.getElementById(setting).type=="checkbox"){
+				settings[setting]=document.getElementById(setting).checked+"";
+			}else{
+				settings[setting]=document.getElementById(setting).value;
+			}
+			localStorage[setting]=settings[setting];
+		}
+	}
+	window.location.href="index.html";
+	goBack();
+}
+//end of options
+//settings
+function settingsLoad(){
+	for(var setting in settings){
+		if (typeof(localStorage[setting])!="undefined"){
+			settings[setting]=localStorage[setting];
+		}
+	}
+}
+//end of settings
 function loadingGif(){
 	document.getElementById("loadNAO").style.backgroundImage="url(loading.gif)";
 	imageElement.style.visibility="hidden";
@@ -188,5 +246,7 @@ function applySizing(){
 	imageElement.style.height=catHeight+"px";
 }
 
+document.addEventListener("DOMContentLoaded", settingsLoad);
 document.addEventListener("DOMContentLoaded", didLoad);
+document.addEventListener("DOMContentLoaded", optionLoad);
 window.addEventListener("resize", applySizing);

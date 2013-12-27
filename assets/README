@@ -1,7 +1,0 @@
-At the moment, this app is an extension on chrome, and is being prepped for phone use.
-It can be launched on a localhost however.
-At this time, it has several options, including SFW and Subreddit toggles, as well as the ability to turn some buttons off while browsing. This, of course, will then make it so swiping is the only navigation.
-As far as more detail about what it does: as most subreddits host images in dedicated imgur folders, this app directly pulls the APIs for these folders and lets you browse just the images and GIFs. It pulls an array and provides these to you randomly, however you are able to go back in the list and see other pictures as you like. Options can be entered at any time, unless of course you turned the buttons off- however a quick refresh will take you to the homepage so you can change the options again.
-The hammertime js swipes are not mine, I got them off another github account.
-If you'd like to download the extension and see it in action, it's available in the chrome app store at https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj.
-For more information you can contact me at greatbigsquirrel@gmail.com.
