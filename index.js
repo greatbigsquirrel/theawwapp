@@ -34,9 +34,7 @@ function didLoad(){
 	document.getElementById("restart").addEventListener("click", function(){
 		window.location.href="index.html";
 	});
-	document.getElementById("tryAgain").addEventListener("click", function(){
-		startLoad();
-	});
+	document.getElementById("tryAgain").addEventListener("click", startLoad);
 	if(settings.noShare=="true"){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
