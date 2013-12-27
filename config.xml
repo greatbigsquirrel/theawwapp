@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj" version="1.0.0" viewmodes="maximized">
-    <access origin="https://imgur.com" subdomains="true"/>
-    <access origin="http://imgur.com" subdomains="true"/>
-    <access origin="https://api.imgur.com" subdomains="true"/>
-    <access origin="http://api.imgur.com" subdomains="true"/>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj" version="1.0.0" viewmodes="fullscreen">
+    <access origin="https://imgur.com" subdomains="true"></access>
+    <access origin="http://imgur.com" subdomains="true"></access>
+    <access origin="https://api.imgur.com" subdomains="true"></access>
+    <access origin="http://api.imgur.com" subdomains="true"></access>
     <tizen:allow-navigation>imgur.com *.imgur.com</tizen:allow-navigation>
     <tizen:application id="IoLKCYuq2f.theawwapp" package="IoLKCYuq2f" required_version="2.2"/>
     <author href="https://chrome.google.com/webstore/detail/subreddit-dose/debidaobmphbhahmciimemacihcaicfj" email="greatbigsquirrel@gmail.com">Suzan Pero</author>
@@ -13,9 +13,5 @@
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icons/round-icon117.png"/>
     <name>Subreddit Shred</name>
-    <tizen:privilege name="http://tizen.org/privilege/websetting"/>
-    <tizen:privilege name="http://tizen.org/privilege/web.service"/>
-    <tizen:privilege name="http://tizen.org/privilege/download"/>
-    <tizen:privilege name="http://tizen.org/privilege/secureelement"/>
     <tizen:setting screen-orientation="auto-rotation" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
 </widget>
