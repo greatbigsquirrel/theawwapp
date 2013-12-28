@@ -123,7 +123,7 @@ function optionLoad(){
 	}
 }
 function goBack(){
-	optional.style.bottom="-250%";
+	optional.style.bottom="100%";
 }
 function saveOptions(){
 	for(var setting in settings){
