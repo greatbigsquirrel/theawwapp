@@ -7,6 +7,7 @@ body{
 	font-family:'Belleza', Verdana, sans-serif;
 	letter-spacing:2px;
 	overflow:hidden;
+	-webkit-user-select:none;
 }
 p {
 text-indent: 35px;
@@ -145,6 +146,7 @@ input[type="button"]:active{
 	line-height:0px;
 	font-size:0px;
 	vertical-align:text-bottom;
+	-webkit-user-drag:none;
 }
 #tryTryAgain{
 	top:15%;

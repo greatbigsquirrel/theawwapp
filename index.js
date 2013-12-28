@@ -21,7 +21,6 @@ function didLoad(){
 	allAbout=document.getElementById("about");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("optionButtons").addEventListener("click", toggleOption);
 	document.getElementById("Halp").addEventListener("click", toggleHelp);
 	document.getElementById("firstOptions").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
@@ -41,7 +40,7 @@ function didLoad(){
 	}
 //this is for the about page!
 	document.getElementById("aboutMe").addEventListener("click", toggleAbout);
-	document.getElementById("closeAbout").addEventListener("click", toggleClose);
+	document.getElementById("closeAbout").addEventListener("click", toggleAbout);
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -49,11 +48,27 @@ function didLoad(){
 			randomImage();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
-		history.back();
+	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event){
+		if (cats[catNumber].firstItem){
+			toggleHelp();
+		}else{
+			history.back();
+		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", shareButtons);
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", hideShareButtons);
+	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event){
+		if (cats[catNumber].firstItem){
+			toggleOption();
+		}else{
+			shareButtons();
+		}
+	});
+	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
+		if(cats[catNumber].firstItem){
+			toggleAbout();
+		}else{
+			hideShareButtons();
+		}
+	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
 			cats.push(event.state);
@@ -95,13 +110,6 @@ function startLoad(){
 	loadingGif();
 }
 function toggleAbout(){
-	if (allAbout.style.top!="15%"){
-		allAbout.style.top="15%";
-	}else{
-		allAbout.style.top="100%";
-	}
-}
-function toggleClose(){
 	if (allAbout.style.top!="15%"){
 		allAbout.style.top="15%";
 	}else{
