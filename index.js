@@ -2,25 +2,27 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, shareMagic=null, imageElement=null;
+var buttonMagic=null, shareMagic=null, imageElement=null, optional=null, allAbout=null;
 var is_loading=false;
+//vars for settings
+var settings={};
+//default values: we will attempt to load from local storage
+settings.subreddit= "aww";
+//add options here, define input elements in options
+settings.sfw="true";
+settings.turnDemOff="false";
+settings.noShare="false";
+//end settings set up
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
 	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
+	optional=document.getElementById("option");
+	allAbout=document.getElementById("about");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("options").addEventListener("click", function(){
-		window.location.href="options.html";
-	});
-	document.getElementById("Halp").addEventListener("click", function(){
-		cats[catNumber].link="swipemadeeasy.png";
-		showImage(cats[catNumber]);
-		document.getElementById("catbug").style.display="none";
-	});
-	document.getElementById("firstOptions").addEventListener("click", function(){
-		window.location.href="options.html";
-	});
+	document.getElementById("Halp").addEventListener("click", toggleHelp);
+	document.getElementById("firstOptions").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
@@ -31,13 +33,14 @@ function didLoad(){
 	document.getElementById("restart").addEventListener("click", function(){
 		window.location.href="index.html";
 	});
-	document.getElementById("tryAgain").addEventListener("click", function(){
-		startLoad();
-	});
+	document.getElementById("tryAgain").addEventListener("click", startLoad);
 	if(settings.noShare=="true"){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
 	}
+//this is for the about page!
+	document.getElementById("aboutMe").addEventListener("click", toggleAbout);
+	document.getElementById("closeAbout").addEventListener("click", toggleAbout);
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -45,11 +48,27 @@ function didLoad(){
 			randomImage();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
-		history.back();
+	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event){
+		if (cats[catNumber].firstItem){
+			toggleHelp();
+		}else{
+			history.back();
+		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", shareButtons);
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", hideShareButtons);
+	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event){
+		if (cats[catNumber].firstItem){
+			toggleOption();
+		}else{
+			shareButtons();
+		}
+	});
+	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
+		if(cats[catNumber].firstItem){
+			toggleAbout();
+		}else{
+			hideShareButtons();
+		}
+	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
 			cats.push(event.state);
@@ -77,7 +96,7 @@ function startLoad(){
 					randomImage({},true);
 				}else{
 					alert("Oh noes, you reached the end of reddit!");
-					window.location.href="options.html";
+					window.location.href="index.html";
 				}
 			}else{
 				document.getElementById("tryTryAgain").style.display="block";
@@ -90,6 +109,72 @@ function startLoad(){
 	xhr.send(null);
 	loadingGif();
 }
+function toggleAbout(){
+	if (allAbout.style.top!="15%"){
+		allAbout.style.top="15%";
+	}else{
+		allAbout.style.top="100%";
+	}
+}
+function toggleHelp(){
+	if (cats[catNumber].link!="swipemadeeasy.png"){
+		cats[catNumber].link="swipemadeeasy.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="none";
+	}else{
+		cats[catNumber].link="catbug.png";
+		showImage(cats[catNumber]);
+		document.getElementById("catbug").style.display="block";
+	}
+}
+function toggleOption(){
+	if (optional.style.bottom!="30%"){
+		optional.style.bottom="30%";
+	}else{
+		optional.style.bottom="100%";
+	}
+}
+//options stuff
+function optionLoad(){
+	document.getElementById("go").addEventListener("click", goBack);
+	document.getElementById("save").addEventListener("click", saveOptions);
+	
+	for(var setting in settings){
+		if (document.getElementById(setting)){
+			document.getElementById(setting).value=settings[setting];
+			if (settings[setting]=="true"){
+				document.getElementById(setting).checked=true;
+			}
+		}
+	}
+}
+function goBack(){
+	optional.style.bottom="100%";
+}
+function saveOptions(){
+	for(var setting in settings){
+		if (document.getElementById(setting)){
+			if (document.getElementById(setting).type=="checkbox"){
+				settings[setting]=document.getElementById(setting).checked+"";
+			}else{
+				settings[setting]=document.getElementById(setting).value;
+			}
+			localStorage[setting]=settings[setting];
+		}
+	}
+	window.location.href="index.html";
+	goBack();
+}
+//end of options
+//settings
+function settingsLoad(){
+	for(var setting in settings){
+		if (typeof(localStorage[setting])!="undefined"){
+			settings[setting]=localStorage[setting];
+		}
+	}
+}
+//end of settings
 function loadingGif(){
 	document.getElementById("loadNAO").style.backgroundImage="url(loading.gif)";
 	imageElement.style.visibility="hidden";
@@ -171,6 +256,7 @@ function applySizing(){
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
 }
-
+document.addEventListener("DOMContentLoaded", settingsLoad);
 document.addEventListener("DOMContentLoaded", didLoad);
+document.addEventListener("DOMContentLoaded", optionLoad);
 window.addEventListener("resize", applySizing);
