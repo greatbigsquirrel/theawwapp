@@ -36,7 +36,7 @@ function didLoad(){
 	optional=document.getElementById("option");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("options").addEventListener("click", toggleOption);
+	document.getElementById("optionButtons").addEventListener("click", toggleOption);
 	document.getElementById("Halp").addEventListener("click", toggleHelp);
 	document.getElementById("firstOptions").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
@@ -139,7 +139,7 @@ function optionLoad(){
 	}
 }
 function goBack(){
-	optional.style.top="-250%";
+	optional.style.bottom="-250%";
 }
 function saveOptions(){
 	for(var setting in settings){

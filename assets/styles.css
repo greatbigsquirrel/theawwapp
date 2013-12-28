@@ -28,8 +28,8 @@ body{
 	vertical-align:top;
 }
 #option{
-	transition:top 3s ease-out;
-	transition: top 1s cubic-bezier(0.000, 0.100, 0.035, 1.470);
+	transition:bottom 3s ease-out;
+	transition:bottom 1s cubic-bezier(0.000, 0.100, 0.035, 1.470);
 /* this makes it BOUNCE! */
 	vertical-align:top;
 	bottom:100%;
