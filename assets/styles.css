@@ -7,6 +7,17 @@ body{
 	font-family:'Belleza', Verdana, sans-serif;
 	letter-spacing:2px;
 	overflow:hidden;
+	-webkit-user-select:none;
+}
+p {
+text-indent: 35px;
+}
+a {
+	text-decoration:none;
+	color:#9CCBF8;
+}
+a:hover{
+	text-decoration:underline;
 }
 #Slider{
 	position: absolute;
@@ -36,6 +47,19 @@ body{
 	width:60%;
 	margin:0px 20%;
 	padding: 1% 0px;
+	border:5px solid black;
+	position:absolute;
+	background-color:#2B2B2B;
+}
+#about{
+	transition:top 3s ease-out;
+	transition:top 1s cubic-bezier(0.000, 0.100, 0.035, 1.470);
+	vertical-align:top;
+	top:100%;
+	width:80%;
+	font-size:15px;
+	margin:0px 10%;
+	padding: 1% 1%;
 	border:5px solid black;
 	position:absolute;
 	background-color:#2B2B2B;
@@ -122,6 +146,7 @@ input[type="button"]:active{
 	line-height:0px;
 	font-size:0px;
 	vertical-align:text-bottom;
+	-webkit-user-drag:none;
 }
 #tryTryAgain{
 	top:15%;

@@ -2,7 +2,7 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, shareMagic=null, imageElement=null, optional=null;
+var buttonMagic=null, shareMagic=null, imageElement=null, optional=null, allAbout=null;
 var is_loading=false;
 //vars for settings
 var settings={};
@@ -15,17 +15,17 @@ settings.noShare="false";
 //end settings set up
 function didLoad(){
 	buttonMagic=document.getElementById("cutestuff");
-	imageElement=document.getElementById("cat");
+	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
 	optional=document.getElementById("option");
+	allAbout=document.getElementById("about");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
-	document.getElementById("optionButtons").addEventListener("click", toggleOption);
-	document.getElementById("options").addEventListener("click", toggleOption);
 	document.getElementById("Halp").addEventListener("click", toggleHelp);
 	document.getElementById("firstOptions").addEventListener("click", toggleOption);
+	document.getElementById("options").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
-	imageElement.addEventListener("load", function(event){
+	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
 		stopGif();
 		imageElement.style.visibility="visible";
@@ -39,6 +39,9 @@ function didLoad(){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
 	}
+//this is for the about page!
+	document.getElementById("aboutMe").addEventListener("click", toggleAbout);
+	document.getElementById("closeAbout").addEventListener("click", toggleAbout);
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -46,11 +49,27 @@ function didLoad(){
 			randomImage();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event) {
-		history.back();
+	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event){
+		if (cats[catNumber].firstItem){
+			toggleHelp();
+		}else{
+			history.back();
+		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", shareButtons);
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", hideShareButtons);
+	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event){
+		if (cats[catNumber].firstItem){
+			toggleOption();
+		}else{
+			shareButtons();
+		}
+	});
+	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
+		if(cats[catNumber].firstItem){
+			toggleAbout();
+		}else{
+			hideShareButtons();
+		}
+	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
 			cats.push(event.state);
@@ -91,11 +110,11 @@ function startLoad(){
 	xhr.send(null);
 	loadingGif();
 }
-function toggleOption(){
-	if (optional.style.bottom!="30%"){
-		optional.style.bottom="30%";
+function toggleAbout(){
+	if (allAbout.style.top!="15%"){
+		allAbout.style.top="15%";
 	}else{
-		optional.style.bottom="100%";
+		allAbout.style.top="100%";
 	}
 }
 function toggleHelp(){
@@ -107,6 +126,13 @@ function toggleHelp(){
 		cats[catNumber].link="catbug.png";
 		showImage(cats[catNumber]);
 		document.getElementById("catbug").style.display="block";
+	}
+}
+function toggleOption(){
+	if (optional.style.bottom!="30%"){
+		optional.style.bottom="30%";
+	}else{
+		optional.style.bottom="100%";
 	}
 }
 //options stuff
@@ -231,7 +257,6 @@ function applySizing(){
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
 }
-
 document.addEventListener("DOMContentLoaded", settingsLoad);
 document.addEventListener("DOMContentLoaded", didLoad);
 document.addEventListener("DOMContentLoaded", optionLoad);
