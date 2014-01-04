@@ -47,4 +47,5 @@ function createSubDropDown(){
 		document.getElementById("subRedditReplace").appendChild(textualOptions);
 	}
 	document.getElementById("subRedditReplace").addEventListener("change", switchTheSub);
+	document.getElementById("favoriteStar").addEventListener("click", likeUnlike);
 }
