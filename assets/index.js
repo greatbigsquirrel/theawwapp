@@ -14,6 +14,7 @@ settings.turnDemOff="false";
 settings.noShare="false";
 //end settings set up
 function didLoad(){
+	createSubDropDown();
 	buttonMagic=document.getElementById("cutestuff");
 	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
