@@ -24,6 +24,7 @@ function didLoad(){
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
 	document.getElementById("Halp").addEventListener("click", toggleHelp);
 	document.getElementById("firstOptions").addEventListener("click", toggleOption);
+	document.getElementById("options").addEventListener("click", toggleOption);
 	document.getElementById("nextpic").addEventListener("click", randomImage);
 	imageElement.addEventListener("load", function(event) {
 		is_loading=false;
