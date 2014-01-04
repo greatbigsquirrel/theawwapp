@@ -70,6 +70,27 @@ a:hover{
 	text-align:center;
 	font-size:18px;
 }
+#subRedditReplace{
+	height: 29px;
+	width: 23px;
+	position: relative;
+	bottom: 2px;
+	font-size: 15px;
+}
+#favoriteStar{
+	position:absolute;
+	right:13px;
+	top:-2px;
+	font-size: 35px;
+}
+#favoriteStar.unlike{
+	color: #2B2B2B;
+	text-shadow: 2px 2px 4px #2B2B2B;
+}
+#favoriteStar.like{
+	color: #E4B705;
+	text-shadow: 2px 3px 3px #2B2B2B;
+}
 #catbug{
 	color:#AB3F3E;
 	text-shadow: 3px 2px 3px #2B2B2B;
@@ -81,8 +102,10 @@ a:hover{
 .buttonHolder{
 	margin-top:7px;
 }
-#welcome{
+.relativePosition{
 	position:relative;
+}
+#welcome{
 }
 #cutestuff{
 	display:none;

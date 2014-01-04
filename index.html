@@ -3,6 +3,7 @@
 <head>
 <script type="text/javascript" src="hammerjs/hammer.min.js"></script>
 <script type="text/javascript" src="shareButton.js"></script>
+<script type="text/javascript" src="dropdown.js"></script>
 <script type="text/javascript" src="index.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Belleza' rel='stylesheet' type='text/css'>
 <link href="styles.css" rel="stylesheet" type="text/css"></link>
@@ -25,7 +26,7 @@
 	<input type="button" id="toggleButton" value="Share/option?" />
 	<input type="button" id="nextpic" value="Need more?" />
 </div>
-<div id="welcome" class="buttonHolder">
+<div id="welcome" class="buttonHolder relativePosition">
 	<div id="catbug">Catbug &copy; Bravest Warriors
 	</div>
 	<input type="button" id="firstOptions" value="More options?" />
@@ -36,7 +37,10 @@
 <!-- This contains the options -->
 <div id="option">
 	<div id="optionButtons">
-		Subreddit:<br/><input type="text" id="subreddit" /><br/><br/>
+		Subreddit:<br/><input type="text" id="subreddit" />
+		<select id="subRedditReplace">
+			<option value=""> - Suggestions! - </option>
+		</select><br/><br/>
 		<label>sfw? <input type="checkbox" id="sfw" /></label><br/><br/>
 		<label title="This removes the share toggle/need more/change options buttons from the images, swiping up and down will show share buttons">Remove buttons? <input type="checkbox" id="turnDemOff" /></label><br/><br/>
 		<label title="This removes all share options">Remove share buttons? <input type="checkbox" id="noShare" /></label><br/><br/>
