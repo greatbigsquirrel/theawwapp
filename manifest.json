@@ -1,7 +1,7 @@
 {
     "name": "Subreddit Dose",
     "description": "Grab a random image from a subreddit imgur gallery",
-    "version": "2.2",
+    "version": "2.3",
     "app": {
         "launch": {
             "local_path": "index.html"
