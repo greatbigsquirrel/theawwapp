@@ -35,6 +35,7 @@ function shareButtonMagic(imgObj){
 			linkShare.setAttribute("target", "_blank");
 			linkShare.appendChild(imageShare);
 			document.getElementById("shareOptions").appendChild(linkShare);
+			document.getElementById("shareOptions").style.display="inline-block";
 		}
 	}
 }
