@@ -55,6 +55,7 @@ a:hover{
 	transition:top 3s ease-out;
 	transition:top 1s cubic-bezier(0.000, 0.100, 0.035, 1.470);
 	vertical-align:top;
+	display:none;
 	top:100%;
 	width:80%;
 	font-size:15px;
@@ -72,7 +73,7 @@ a:hover{
 }
 #subRedditReplace{
 	height: 29px;
-	width: 23px;
+	width: 19px;
 	position: relative;
 	bottom: 2px;
 	font-size: 15px;
