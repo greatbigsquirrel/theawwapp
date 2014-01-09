@@ -113,9 +113,15 @@ function startLoad(){
 }
 function toggleAbout(){
 	if (allAbout.style.top!="15%"){
-		allAbout.style.top="15%";
+		allAbout.style.display="block";
+		setTimeout(function(){
+			allAbout.style.top="15%";
+		}, 250);
 	}else{
 		allAbout.style.top="100%";
+		setTimeout(function(){
+			allAbout.style.display="none";
+		}, 1000);
 	}
 }
 function toggleHelp(){
