@@ -120,8 +120,9 @@ function toggleAbout(){
 	}else{
 		allAbout.style.top="100%";
 		setTimeout(function(){
+			window.scroll(0,0);
 			allAbout.style.display="none";
-		}, 1000);
+		}, 750);
 	}
 }
 function toggleHelp(){
