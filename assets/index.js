@@ -2,7 +2,7 @@ var catBugObj={width:1024,height:667,title:"Welcome!",link:"catbug.png", firstIt
 var cats=[catBugObj];
 var catNumber=0;
 var pgNum=0;
-var buttonMagic=null, shareMagic=null, imageElement=null, optional=null, allAbout=null;
+var buttonMagic=null, shareMagic=null, imageElement=null, optional=null;
 var is_loading=false;
 //vars for settings
 var settings={};
@@ -19,7 +19,6 @@ function didLoad(){
 	imageElement=document.getElementById("cat")
 	shareMagic=document.getElementById("shareOptions");
 	optional=document.getElementById("option");
-	allAbout=document.getElementById("about");
 	document.getElementById("start").addEventListener("click", startMadness);
 	document.getElementById("toggleButton").addEventListener("click", toggleShareButtons);
 	document.getElementById("Halp").addEventListener("click", toggleHelp);
@@ -40,9 +39,6 @@ function didLoad(){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
 	}
-//this is for the about page!
-	document.getElementById("aboutMe").addEventListener("click", toggleAbout);
-	document.getElementById("closeAbout").addEventListener("click", toggleAbout);
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
@@ -66,8 +62,6 @@ function didLoad(){
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
 		if(cats[catNumber].firstItem){
-			toggleAbout();
-		}else{
 			hideShareButtons();
 		}
 	});
@@ -110,20 +104,6 @@ function startLoad(){
 	xhr.setRequestHeader("Authorization", "Client-ID e0114193f3d0c77");
 	xhr.send(null);
 	loadingGif();
-}
-function toggleAbout(){
-	if (allAbout.style.top!="15%"){
-		allAbout.style.display="block";
-		setTimeout(function(){
-			allAbout.style.top="15%";
-		}, 250);
-	}else{
-		allAbout.style.top="100%";
-		setTimeout(function(){
-			window.scroll(0,0);
-			allAbout.style.display="none";
-		}, 750);
-	}
 }
 function toggleHelp(){
 	if (cats[catNumber].link!="swipemadeeasy.png"){

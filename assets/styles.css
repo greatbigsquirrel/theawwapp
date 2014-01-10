@@ -51,20 +51,6 @@ a:hover{
 	position:absolute;
 	background-color:#2B2B2B;
 }
-#about{
-	transition:top 3s ease-out;
-	transition:top 1s cubic-bezier(0.000, 0.100, 0.035, 1.470);
-	vertical-align:top;
-	display:none;
-	top:100%;
-	width:80%;
-	font-size:15px;
-	margin:0px 10%;
-	padding: 1% 1%;
-	border:5px solid black;
-	position:absolute;
-	background-color:#2B2B2B;
-}
 #subreddit{
 	height:30px;
 	width:50%;
