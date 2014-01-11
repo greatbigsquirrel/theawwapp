@@ -118,9 +118,16 @@ function toggleHelp(){
 }
 function toggleOption(){
 	if (optional.style.bottom!="30%"){
-		optional.style.bottom="30%";
+		optional.style.display="block";
+		setTimeout(function(){
+			optional.style.bottom="30%";
+		}, 50);
 	}else{
 		optional.style.bottom="100%";
+		setTimeout(function(){
+			window.scroll(0,0);
+			optional.style.display="none";
+		}, 750);
 	}
 }
 //options stuff

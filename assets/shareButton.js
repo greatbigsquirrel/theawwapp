@@ -7,11 +7,17 @@ var shareLocations=[
 ];
 //for more share buttons: http://w.sharethis.com/images/#nameofsite(ex.pinterest)_32.png
 function shareButtons(){
-	document.getElementById("Slider").style.display="visible";
-	document.getElementById("Slider").style.top="0px";
+	document.getElementById("Slider").style.display="block";
+	setTimeout(function(){
+		document.getElementById("Slider").style.top="0px";
+	}, 50);
 }
 function hideShareButtons(){
 	document.getElementById("Slider").style.top="-70px";
+	setTimeout(function(){
+		window.scroll(0,0);
+		document.getElementById("Slider").style.display="none";
+	}, 500);
 }
 function toggleShareButtons(){
 	if (document.getElementById("Slider").style.top=="0px"){
