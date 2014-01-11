@@ -14,6 +14,8 @@ settings.turnDemOff="false";
 settings.noShare="false";
 //end settings set up
 function didLoad(){
+	settingsLoad();
+	optionLoad(); //settings and optionload need to be here
 	createSubDropDown();
 	buttonMagic=document.getElementById("cutestuff");
 	imageElement=document.getElementById("cat")
@@ -250,7 +252,5 @@ function applySizing(){
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
 }
-document.addEventListener("DOMContentLoaded", settingsLoad);
 document.addEventListener("DOMContentLoaded", didLoad);
-document.addEventListener("DOMContentLoaded", optionLoad);
 window.addEventListener("resize", applySizing);
