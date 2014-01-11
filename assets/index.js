@@ -61,9 +61,7 @@ function didLoad(){
 		}
 	});
 	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
-		if(cats[catNumber].firstItem){
-			hideShareButtons();
-		}
+		hideShareButtons();
 	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
@@ -123,11 +121,7 @@ function toggleOption(){
 			optional.style.bottom="30%";
 		}, 50);
 	}else{
-		optional.style.bottom="100%";
-		setTimeout(function(){
-			window.scroll(0,0);
-			optional.style.display="none";
-		}, 750);
+		goBack();
 	}
 }
 //options stuff
@@ -146,6 +140,10 @@ function optionLoad(){
 }
 function goBack(){
 	optional.style.bottom="100%";
+	setTimeout(function(){
+		window.scroll(0,0);
+		optional.style.display="none";
+	}, 750);
 }
 function saveOptions(){
 	for(var setting in settings){
