@@ -71,10 +71,11 @@ a:hover{
 	right:13px;
 	top:-2px;
 	font-size: 35px;
+	cursor:pointer;
 }
 #favoriteStar.unlike{
-	color: #2B2B2B;
-	text-shadow: 2px 2px 4px #2B2B2B;
+	color: #8F8989;
+	text-shadow: 0px 0px 2px #2B2B2B;
 }
 #favoriteStar.like{
 	color: #E4B705;
