@@ -117,10 +117,12 @@ function toggleHelp(){
 	}
 }
 function toggleOption(){
-	if (optional.style.bottom!="30%"){
+	//var moveOptions=(window.innerHeight-optional.clientHeight)/2;
+	if (optional.style.bottom=="" || optional.style.bottom=="100%"){
 		optional.style.display="block";
 		setTimeout(function(){
-			optional.style.bottom="30%";
+			var moveOptions=Math.round((window.innerHeight-optional.clientHeight)/2);
+			optional.style.bottom= moveOptions+"px";
 		}, 50);
 	}else{
 		goBack();
