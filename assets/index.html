@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<script type="text/javascript" src="hammerjs/hammer.min.js"></script>
+<script type="text/javascript" src="hammerjs/hammer.js"></script>
 <script type="text/javascript" src="shareButton.js"></script>
 <script type="text/javascript" src="dropdown.js"></script>
 <script type="text/javascript" src="tizen.js"></script>
@@ -13,6 +13,15 @@
 <title>Subreddit Dose!</title>
 </head>
 <body>
+<!-- for fake touches-->
+<script src="hammer.fakemultitouch.js"></script>
+<script src="hammer.showtouches.js"></script>
+<script>
+    if(!Hammer.HAS_TOUCHEVENTS && !Hammer.HAS_POINTEREVENTS) {
+        Hammer.plugins.showTouches();
+		Hammer.plugins.fakeMultitouch();
+        }
+</script>
 <div id="tryTryAgain" class="buttonHolder">
 	Sorry, loading issue, try again?<br/><br/>
 	<input type="button" id="tryAgain" value="Try Again?" />
@@ -25,7 +34,7 @@
 <div id="loadNAO">
 	<img id="cat" src="catbug.png"/><br/>
 </div>
-<div id="cutestuff" class="buttonHolder">
+<div id="cutestuff" class="buttonHolder relativePosition">
 	<input type="button" id="toggleButton" value="Share/option?" />
 	<input type="button" id="nextpic" value="Need more?" />
 </div>

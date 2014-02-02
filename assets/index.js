@@ -12,7 +12,12 @@ settings.subreddit= "aww";
 settings.sfw="true";
 settings.turnDemOff="false";
 settings.noShare="false";
+var picLeftPos=0, picTopPos=0;
 //end settings set up
+//for the pinchzoom
+var posX=0, posY=0,
+	scale=1, last_scale,
+	rotation= 1, last_rotation;
 function didLoad(){
 	settingsLoad();
 	optionLoad(); //settings and optionload need to be here
@@ -41,29 +46,65 @@ function didLoad(){
 		shareMagic.style.display="none";
 		document.getElementById("toggleButton").style.display="none";
 	}
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeleft", function(event) {
+	Hammer(imageElement,{}).on("swipeleft", function(event) {
 		if(cats[catNumber].firstItem){
 			startMadness();
 		}else{
 			randomImage();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swiperight", function(event){
+	Hammer(imageElement,{}).on("swiperight", function(event){
 		if (cats[catNumber].firstItem){
 			toggleHelp();
 		}else{
 			history.back();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipedown", function(event){
+	Hammer(imageElement,{}).on("swipedown", function(event){
 		if (cats[catNumber].firstItem){
 			toggleOption();
 		}else{
 			shareButtons();
 		}
 	});
-	Hammer(imageElement,{drag:false,transform:false}).on("swipeup", function(event){
+	Hammer(imageElement,{}).on("swipeup", function(event){
 		hideShareButtons();
+	});
+	Hammer(document.body,{}).on('touch drag dragend transform', function(ev) {
+		switch(ev.type) {
+			case 'touch':
+				last_scale = scale;
+				break;
+
+			case 'drag':
+				if (scale>1){
+					posX = Math.round(ev.gesture.deltaX);
+					posY = Math.round(ev.gesture.deltaY);
+				}
+				break;
+
+			case 'dragend':
+				if (scale>1){
+					picLeftPos+=posX;
+					picTopPos+=posY;
+				}
+				posX=0, posY=0;
+				break;
+
+			case 'transform':
+				scale = Math.max(1, Math.min(last_scale * ev.gesture.scale, 10));
+				var transform ="scale3d("+scale+","+scale+", 0) ";
+				console.log(transform);
+				if (scale==1){
+					applySizing();
+				}else{
+					imageElement.style.webkitTransform = transform;
+				}
+				break;
+		}
+		if (scale>1){
+			applyGestures();
+		}
 	});
 	window.onpopstate = function(event) {
 		if(event.state && event.state.link){
@@ -228,6 +269,10 @@ function showImage(imgObj){
 	}
 }
 function applySizing(){
+	scale=1;
+	picLeftPos=0, picTopPos=0, posX=0, posY=0;
+	applyGestures();
+	imageElement.style.webkitTransform = "";
 	var catRatio=cats[catNumber].width/cats[catNumber].height;
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
@@ -237,22 +282,24 @@ function applySizing(){
 		buttonPadding = 0;
 	}
 	var maxCatHeight= window.innerHeight-buttonPadding;
+	var maxCatWidth=window.innerWidth;
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
 		catWidth=Math.round(catHeight*catRatio);
-		imageElement.style.paddingTop="0px";
-		if(!buttons_hidden){
-			imageElement.style.paddingTop="10px";
-		}
-	}else{
-		var picTopPad=Math.round((maxCatHeight-catHeight)*0.5);
-		if(picTopPad<10 && !buttons_hidden){
-			picTopPad=10;
-		}
-		imageElement.style.paddingTop=picTopPad+"px";
 	}
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
+	var picLeftPad=Math.round((maxCatWidth-catWidth)*0.5);
+	var picTopPad=Math.round((maxCatHeight-catHeight)*0.5);
+	if(picTopPad<10 && !buttons_hidden){
+		picTopPad=10;
+	}
+	imageElement.style.paddingTop=picTopPad+"px";
+	imageElement.style.paddingLeft=picLeftPad+"px";
+}
+function applyGestures(){
+	imageElement.style.top=picTopPos+posY+"px";
+	imageElement.style.left=picLeftPos+posX+"px";
 }
 document.addEventListener("DOMContentLoaded", didLoad);
 window.addEventListener("resize", applySizing);
