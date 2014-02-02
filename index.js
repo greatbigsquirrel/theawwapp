@@ -250,22 +250,20 @@ function applySizing(){
 		buttonPadding = 0;
 	}
 	var maxCatHeight= window.innerHeight-buttonPadding;
+	var maxCatWidth=window.innerWidth;
 	if(catHeight>maxCatHeight){
 		catHeight=maxCatHeight;
 		catWidth=Math.round(catHeight*catRatio);
-		imageElement.style.paddingTop="0px";
-		if(!buttons_hidden){
-			imageElement.style.paddingTop="10px";
-		}
-	}else{
-		var picTopPad=Math.round((maxCatHeight-catHeight)*0.5);
-		if(picTopPad<10 && !buttons_hidden){
-			picTopPad=10;
-		}
-		imageElement.style.paddingTop=picTopPad+"px";
 	}
 	imageElement.style.width=catWidth+"px";
 	imageElement.style.height=catHeight+"px";
+	var picLeftPad=Math.round((maxCatWidth-catWidth)*0.5);
+	var picTopPad=Math.round((maxCatHeight-catHeight)*0.5);
+	if(picTopPad<10 && !buttons_hidden){
+		picTopPad=10;
+	}
+	imageElement.style.paddingTop=picTopPad+"px";
+	imageElement.style.paddingLeft=picLeftPad+"px";
 }
 document.addEventListener("DOMContentLoaded", didLoad);
 window.addEventListener("resize", applySizing);

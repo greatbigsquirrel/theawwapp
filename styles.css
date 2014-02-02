@@ -28,6 +28,7 @@ a:hover{
 	transition:top 500ms ease-out;
 	margin:5px;
 	vertical-align:top;
+	z-index:1;
 }
 #shareOptions{
 	display:inline-block;
@@ -113,10 +114,12 @@ a:hover{
 	display:none;
 }
 #loadNAO{
+	text-align:left;
 	background-image:url(loading.gif);
 	background-position:center 90%;
 	background-repeat:no-repeat;
 	background-size: 100px 100px;
+	position:relative;
 }
 input[type="button"]{
 	background-color: #a5b8da;
@@ -172,6 +175,7 @@ input[type="button"]:active{
 	font-size:0px;
 	vertical-align:text-bottom;
 	-webkit-user-drag:none;
+	position:relative;
 }
 #tryTryAgain{
 	top:15%;
