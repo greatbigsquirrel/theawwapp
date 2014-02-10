@@ -16,8 +16,10 @@ var picLeftPos=0, picTopPos=0;
 //end settings set up
 //for the pinchzoom
 var posX=0, posY=0,
-	scale=1, last_scale,
-	rotation= 1, last_rotation;
+	scale=1, last_scale=1;
+	//rotation= 1, last_rotation;
+var lastCatWidth, lastCatHeight;
+var defaultProp = {scale:1, width:100, aspectRatio:1.5}; 
 function didLoad(){
 	settingsLoad();
 	optionLoad(); //settings and optionload need to be here
@@ -98,7 +100,8 @@ function didLoad(){
 				if (scale==1){
 					applySizing();
 				}else{
-					imageElement.style.webkitTransform = transform;
+					//imageElement.style.webkitTransform = transform;
+					applyScale();
 				}
 				break;
 		}
@@ -272,7 +275,6 @@ function applySizing(){
 	scale=1;
 	picLeftPos=0, picTopPos=0, posX=0, posY=0;
 	applyGestures();
-	imageElement.style.webkitTransform = "";
 	var catRatio=cats[catNumber].width/cats[catNumber].height;
 	var catWidth=window.innerWidth;
 	var catHeight=Math.round(catWidth/catRatio);
@@ -296,10 +298,26 @@ function applySizing(){
 	}
 	imageElement.style.paddingTop=picTopPad+"px";
 	imageElement.style.paddingLeft=picLeftPad+"px";
+	defaultProp.scale= catWidth / cats[catNumber].width;
+	defaultProp.width= catWidth;
+	defaultProp.aspectRatio= catRatio;
+	lastCatWidth=catWidth;
+	lastCatHeight=catHeight;
 }
 function applyGestures(){
 	imageElement.style.top=picTopPos+posY+"px";
 	imageElement.style.left=picLeftPos+posX+"px";
+}
+function applyScale(){
+	var catWidth=defaultProp.width*scale;
+	var catHeight=Math.round(catWidth/defaultProp.aspectRatio);
+	picTopPos+=(lastCatHeight-catHeight)*0.5,
+	picLeftPos+=(lastCatWidth-catWidth)*0.5;
+	imageElement.style.width=catWidth+"px",
+	imageElement.style.height=catHeight+"px";
+	applyGestures();
+	lastCatWidth=catWidth,
+	lastCatHeight=catHeight;
 }
 document.addEventListener("DOMContentLoaded", didLoad);
 window.addEventListener("resize", applySizing);
