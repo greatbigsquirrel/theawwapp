@@ -1,11 +1,11 @@
 var selectables=[
 	"aww", 
-	"animalsbeingderps", 
+	"animalsbeingderps",
+	"comics",
 	"earthporn", 
 	"funny", 
 	"pics", 
 	"spaceporn", 
-	"wheredidthesodago", 
 	"wtf"
 ];
 if (typeof(localStorage.selectables)!="undefined"){

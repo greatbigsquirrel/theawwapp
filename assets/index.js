@@ -20,6 +20,7 @@ var posX=0, posY=0,
 	//rotation= 1, last_rotation;
 var lastCatWidth, lastCatHeight;
 var defaultProp = {scale:1, width:100, aspectRatio:1.5}; 
+var percentTouch = {x:0, y:0};
 function didLoad(){
 	settingsLoad();
 	optionLoad(); //settings and optionload need to be here
@@ -94,9 +95,12 @@ function didLoad(){
 				break;
 
 			case 'transform':
+				console.log(ev.gesture);
+				percentTouch.x=((ev.gesture.touches[0].pageX+ev.gesture.touches[0].pageX)/2)/window.innerWidth,
+				percentTouch.y=((ev.gesture.touches[1].pageY+ev.gesture.touches[1].pageY)/2)/window.innerHeight;
 				scale = Math.max(1, Math.min(last_scale * ev.gesture.scale, 10));
-				var transform ="scale3d("+scale+","+scale+", 0) ";
-				console.log(transform);
+				//var transform ="scale3d("+scale+","+scale+", 0) ";
+				//console.log(transform);
 				if (scale==1){
 					applySizing();
 				}else{
@@ -164,12 +168,15 @@ function toggleOption(){
 	//var moveOptions=(window.innerHeight-optional.clientHeight)/2;
 	if (optional.style.bottom=="" || optional.style.bottom=="100%"){
 		optional.style.display="block";
-		setTimeout(function(){
-			var moveOptions=Math.round((window.innerHeight-optional.clientHeight)/2);
-			optional.style.bottom= moveOptions+"px";
-		}, 50);
+		setTimeout(positionOptions, 50);
 	}else{
 		goBack();
+	}
+}
+function positionOptions(){
+	if (optional.style.display=="block"){
+		var moveOptions=Math.round((window.innerHeight-optional.clientHeight)/2);
+		optional.style.bottom= moveOptions+"px";
 	}
 }
 //options stuff
@@ -274,6 +281,7 @@ function showImage(imgObj){
 function applySizing(){
 	scale=1;
 	picLeftPos=0, picTopPos=0, posX=0, posY=0;
+	positionOptions();
 	applyGestures();
 	var catRatio=cats[catNumber].width/cats[catNumber].height;
 	var catWidth=window.innerWidth;
@@ -311,8 +319,8 @@ function applyGestures(){
 function applyScale(){
 	var catWidth=defaultProp.width*scale;
 	var catHeight=Math.round(catWidth/defaultProp.aspectRatio);
-	picTopPos+=(lastCatHeight-catHeight)*0.5,
-	picLeftPos+=(lastCatWidth-catWidth)*0.5;
+	picTopPos+=(lastCatHeight-catHeight)*percentTouch.y,
+	picLeftPos+=(lastCatWidth-catWidth)*percentTouch.x;
 	imageElement.style.width=catWidth+"px",
 	imageElement.style.height=catHeight+"px";
 	applyGestures();
