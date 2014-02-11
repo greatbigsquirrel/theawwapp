@@ -96,8 +96,8 @@ function didLoad(){
 
 			case 'transform':
 				console.log(ev.gesture);
-				percentTouch.x=((ev.gesture.touches[0].pageX+ev.gesture.touches[0].pageX)/2)/window.innerWidth,
-				percentTouch.y=((ev.gesture.touches[1].pageY+ev.gesture.touches[1].pageY)/2)/window.innerHeight;
+				percentTouch.x=((ev.gesture.touches[0].pageX+ev.gesture.touches[1].pageX)/2)/window.innerWidth,
+				percentTouch.y=((ev.gesture.touches[0].pageY+ev.gesture.touches[1].pageY)/2)/window.innerHeight;
 				scale = Math.max(1, Math.min(last_scale * ev.gesture.scale, 10));
 				//var transform ="scale3d("+scale+","+scale+", 0) ";
 				//console.log(transform);
