@@ -1,6 +1,7 @@
 package com.greatbigsquirrel.subredditdose;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.webkit.WebView;
@@ -16,6 +17,9 @@ public class MainActivity extends Activity {
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setDomStorageEnabled(true);
         myWebView.getSettings().setDatabaseEnabled(true);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+        	myWebView.getSettings().setDatabasePath("/data/data/" + myWebView.getContext().getPackageName() + "/databases/");
+        }
         myWebView.loadUrl("file:///android_asset/index.html");
 //        WebView.addJavascriptInterface (new WebAppInterface(this), "Load");
 //        WebSettings webSettings = myWebView.getSettings();
