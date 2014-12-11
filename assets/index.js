@@ -12,6 +12,7 @@ settings.subreddit= "aww";
 settings.sfw="true";
 settings.turnDemOff="false";
 settings.noShare="false";
+settings.secureHttp="true";
 var picLeftPos=0, picTopPos=0;
 //end settings set up
 //for the pinchzoom
@@ -261,7 +262,11 @@ function randomImage(ev,freshNip){
 	}
 	catNumber=Math.floor(cats.length * Math.random());
 	showImage(cats[catNumber]);
-	history.pushState(cats[catNumber], "", "index.html?img="+cats[catNumber].link);
+	var pushLink="index.html?img="+cats[catNumber].link;
+	if(settings.secureHttp=="true"){
+		pushLink=pushLink.replace("http:","https:");
+	};
+	history.pushState(cats[catNumber], "", pushLink);
 }
 function showImage(imgObj){
 	hideShareButtons();
@@ -273,7 +278,11 @@ function showImage(imgObj){
 	}else{
 		is_loading=true;
 		loadingGif();
-		imageElement.src=imgObj.link;
+		if(settings.secureHttp=="true"){
+			imageElement.src=imgObj.link.replace("http:","https:");
+		}else{
+			imageElement.src=imgObj.link;
+		}
 		imageElement.title=imgObj.title;
 		shareButtonMagic(imgObj);
 	}
